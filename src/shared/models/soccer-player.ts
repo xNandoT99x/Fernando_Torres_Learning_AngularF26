@@ -3,7 +3,6 @@ export interface SoccerPlayer {
   name: string;
   age: number;
   nationality: string;
-  club: string;
   position: 'Forward' | 'Midfielder' | 'Defender' | 'Goalkeeper';
   preferredFoot?: string;
 }
