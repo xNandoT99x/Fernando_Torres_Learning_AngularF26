@@ -8,7 +8,7 @@ export interface SoccerPlayer {
   preferredFoot?: string;
 }
 
+export type SoccerPlayerList<T> = T[];
 
-export type List<SoccerPlayer> = {
-  items: SoccerPlayer[];
-};
+
+
