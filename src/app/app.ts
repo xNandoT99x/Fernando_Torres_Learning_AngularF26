@@ -17,7 +17,7 @@ export class App {
       nationality: 'Argentina',
       club: 'Inter Miami',
       position: 'Forward',
-      preferredFoot: 'Left',
+      preferredFoot: false,
     },
     {
       id: 2,
@@ -26,7 +26,7 @@ export class App {
       nationality: 'Portuguese',
       club: 'Al Nassr',
       position: 'Forward',
-      preferredFoot: 'Right',
+      preferredFoot: false,
     },
     {
       id: 3,
@@ -35,7 +35,6 @@ export class App {
       nationality: 'Spain',
       club: 'Barcelona',
       position: 'Forward',
-      preferredFoot: 'Left',
     },
 
     {
@@ -45,7 +44,7 @@ export class App {
       nationality: 'France',
       club: 'Real Madrid',
       position: 'Forward',
-      preferredFoot: 'Right',
+      preferredFoot: true,
     },
     {
       id: 5,
@@ -54,16 +53,16 @@ export class App {
       nationality: 'Belgium',
       club: 'Napoli',
       position: 'Midfielder',
-      preferredFoot: 'Right',
+      preferredFoot: false,
     },
     {
       id: 6,
-      name: 'Erling Haaland',
-      age: 26,
-      nationality: 'Norway',
-      club: 'Manchester City',
-      position: 'Forward',
-      preferredFoot: 'Left',
+      name: 'Joan Garcia',
+      age: 25,
+      nationality: 'Spain',
+      club: 'Barcelona',
+      position: 'Goalkeeper',
+      preferredFoot: true,
     },
   ];
 }

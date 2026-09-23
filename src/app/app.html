@@ -1,5 +1,29 @@
-<h1> PLayers List</h1>
+<h1>Players List</h1>
 
 <div class="container">
-  SoccerPlayer[0].id
+  @for (player of Player; track player.id) {
+    <div class="player-card">
+      <h2>{{ player.name }}</h2>
+      <p>Age: {{ player.age }}</p>
+      <p>Nationality: {{ player.nationality }}</p>
+      <p>Club: {{ player.club }}</p>
+        <p>Preferred Foot: {{ player.preferredFoot ? 'Yes' : 'No' }}</p>
+      @switch (player.position) {
+        @case ('Forward') {
+          <p>Position: Attacker</p>
+        }
+        @case ('Midfielder') {
+          <p>Position: Midfielder</p>
+        }
+        @case ('Defender') {
+          <p>Position: Defender</p>
+        }
+        @case ('Goalkeeper') {
+          <p>Position: Goalkeeper</p>
+        }
+      }
+    </div>
+  } @empty {
+    <p>No soccer players found.</p>
+  }
 </div>

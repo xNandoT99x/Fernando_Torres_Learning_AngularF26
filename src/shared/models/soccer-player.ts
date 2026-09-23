@@ -5,7 +5,7 @@ export interface SoccerPlayer {
   nationality: string;
   club: string;
   position: 'Forward' | 'Midfielder' | 'Defender' | 'Goalkeeper';
-  preferredFoot?: string;
+  preferredFoot?: boolean;
 }
 
 export type SoccerPlayerList<T> = T[];
