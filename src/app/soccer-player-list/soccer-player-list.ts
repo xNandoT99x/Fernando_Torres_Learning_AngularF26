@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import{ SoccerPlayerList, SoccerPlayer} from '../../shared/models/soccer-player';
+import{ SoccerPlayerList, SoccerPlayer, ContentEvent} from '../../shared/models/soccer-player';
 import { SoccerPlayerListItem } from '../soccer-player-list-item/soccer-player-list-item';
 @Component({
   imports: [SoccerPlayerListItem],
@@ -73,4 +73,7 @@ export class SoccerPlayerListComponent {
       preferredFoot: false,
     },
   ];
+  onPlayerEvent(event: ContentEvent): void {
+    console.log(event);
+  }
 }

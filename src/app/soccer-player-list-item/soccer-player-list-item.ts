@@ -1,5 +1,5 @@
-import { Component, input } from '@angular/core';
-import {SoccerPlayer} from '../../shared/models/soccer-player';
+import { Component, input, output } from '@angular/core';
+import {SoccerPlayer, ContentEvent} from '../../shared/models/soccer-player';
 
 @Component({
   imports: [],
@@ -9,5 +9,12 @@ import {SoccerPlayer} from '../../shared/models/soccer-player';
 })
 export class SoccerPlayerListItem {
   player = input.required<SoccerPlayer>();
+  playerEvent = output<ContentEvent>();
+  toggle():void{
+    this.playerEvent.emit({
+      id:this.player().id,
+      action:'opened'
+    });
 
+  }
 }

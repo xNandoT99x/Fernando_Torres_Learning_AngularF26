@@ -10,5 +10,10 @@ export interface SoccerPlayer {
 
 export type SoccerPlayerList<T> = T[];
 
+export interface ContentEvent {
+  id: number;
+  action: 'opened' | 'favourited';
+}
+
 
 
