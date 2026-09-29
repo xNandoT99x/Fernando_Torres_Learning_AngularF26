@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import {SoccerPlayer} from '../../shared/models/soccer-player';
 
 @Component({
   imports: [],
@@ -6,4 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './soccer-player-list-item.css',
   templateUrl: './soccer-player-list-item.html',
 })
-export class SoccerPlayerListItem {}
+export class SoccerPlayerListItem {
+  player = input.required<SoccerPlayer>();
+
+}
