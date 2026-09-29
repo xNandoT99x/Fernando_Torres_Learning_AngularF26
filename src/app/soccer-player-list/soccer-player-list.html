@@ -1,1 +1,5 @@
-<p>soccer-player-list works!</p>
+@for (player of Player; track player.id){
+  <app-soccer-player-list-item [player]="player"></app-soccer-player-list-item>
+}@empty {
+  <p>No soccer players found.</p>
+}

@@ -1,1 +1,24 @@
-<p>soccer-player-list-item works!</p>
+<h2>{{player().name}}</h2>
+@switch (player().position){
+  @case ('Forward'){
+    <span>Forward</span>
+  }
+  @case ('Midfielder'){
+    <span>Midfielder</span>
+  }
+  @case ('Defender'){
+    <span>Defender</span>
+  }
+  @case ('Goalkeeper'){
+    <span>Goalkeeper</span>
+  }
+  @default {
+    <span>Unknown position</span>
+  }
+}
+@if (player().preferredFoot !== undefined){
+  <p>Preferred Foot: {{ player().preferredFoot ? 'Yes' : 'No' }}</p>
+} @else {
+  <p>Preferred Foot: Not specified</p>
+}
+

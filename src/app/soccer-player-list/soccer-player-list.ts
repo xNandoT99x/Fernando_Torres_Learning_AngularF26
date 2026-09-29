@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import{ SoccerPlayerList, SoccerPlayer} from '../../shared/models/soccer-player';
-
+import { SoccerPlayerListItem } from '../soccer-player-list-item/soccer-player-list-item';
 @Component({
-  imports: [],
+  imports: [SoccerPlayerListItem],
   selector: 'app-soccer-player-list',
   styleUrl: './soccer-player-list.css',
   templateUrl: './soccer-player-list.html',
@@ -62,6 +62,15 @@ export class SoccerPlayerListComponent {
       club: 'Barcelona',
       position: 'Goalkeeper',
       preferredFoot: true,
+    },
+    {
+      id: 7,
+      name: 'Pau Cubarsi',
+      age: 19,
+      nationality: 'Spain',
+      club: 'Barcelona',
+      position: 'Defender',
+      preferredFoot: false,
     },
   ];
 }
