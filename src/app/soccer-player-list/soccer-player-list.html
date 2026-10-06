@@ -1,4 +1,4 @@
-@for (player of Player; track player.id){
+@for (player of players(); track player.id){
   <app-soccer-player-list-item
     [player]="player"
   (playerEvent)="onPlayerEvent($event)">
