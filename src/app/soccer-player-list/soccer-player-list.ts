@@ -12,8 +12,11 @@ import { SoccerPlayerListItem } from '../soccer-player-list-item/soccer-player-l
 export class SoccerPlayerListComponent {
   readonly players = inject(SoccerPlayer).playersList;
   readonly barcelonaPlayers = inject(SoccerPlayer).barcelonaPlayers;
+  readonly barcelonaForwards = inject(SoccerPlayer).barcelonaForwards;
+  readonly playerService = inject(SoccerPlayer);
+
 
   onPlayerEvent(event: ContentEvent): void {
-    console.log(event);
+    this.playerService.removePlayer(event.id);
   }
 }
