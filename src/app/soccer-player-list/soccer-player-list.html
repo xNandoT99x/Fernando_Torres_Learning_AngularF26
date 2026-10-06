@@ -7,3 +7,10 @@
 }@empty {
   <p>No soccer players found.</p>
 }
+
+<h3>Barcelona Players</h3>
+
+@for (player of barcelonaPlayers(); track player.id){
+  <p>{{player.name}}</p>
+}
+
