@@ -1,9 +1,9 @@
 import { computed,effect, inject, signal } from '@angular/core';
-import { Service } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { SoccerPlayer as Player } from '../../shared/models/soccer-player';
 import { SOCCER_PLAYER_CONFIG } from '../../shared/config/app-config';
 
-@Service()
+@Injectable()
 
 export class SoccerPlayer {
   private config = inject(SOCCER_PLAYER_CONFIG);
