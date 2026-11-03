@@ -4,6 +4,9 @@ import { SoccerPlayer } from '../services/soccer-player';
 import { SoccerPlayer as Player } from  '../../shared/models/soccer-player'
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
+import { noWhitespaceValidator } from '../validators/no-whitespace.validator';
+import { goalkeeperAgeValidator } from '../validators/goalkeeper-age.validator';
+
 
 @Component({
   imports: [ReactiveFormsModule, RouterLink],
@@ -18,12 +21,13 @@ export class SoccerPlayerForm {
   private router = inject(Router);
 
   playerForm = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(2)]],
+    name: ['', [Validators.required, Validators.minLength(2), noWhitespaceValidator]],
     age: [18, Validators.required],
     nationality: ['', Validators.required],
     club: ['', Validators.required],
-    position: ['Forward'],
-  });
+    position: ['Forward']
+  }, {validators: goalkeeperAgeValidator });
+
   constructor() {
     effect(() => {
       const id = this.id();

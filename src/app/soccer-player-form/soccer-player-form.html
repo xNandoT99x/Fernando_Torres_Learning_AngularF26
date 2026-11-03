@@ -13,6 +13,12 @@
       @if (playerForm.controls.name.hasError('minlength')) {
         <p>Name must be at least 2 characters.</p>
       }
+      @if (playerForm.controls.name.touched &&
+      playerForm.controls.name.hasError('whitespace')) {
+        <p>Name cannot contain only spaces.</p>
+      }
+
+
     }
   </div>
 
@@ -55,6 +61,11 @@
       <option value="Goalkeeper">Goalkeeper</option>
     </select>
   </div>
+
+  @if (playerForm.hasError('goalkeeperAge') &&
+  (playerForm.controls.age.touched || playerForm.controls.position.touched)) {
+    <p>Goalkeepers must be at least 18 years old.</p>
+  }
 
   <button type="submit" [disabled]="playerForm.invalid">
     {{ id() ? 'Update Player' : 'Add Player' }}
