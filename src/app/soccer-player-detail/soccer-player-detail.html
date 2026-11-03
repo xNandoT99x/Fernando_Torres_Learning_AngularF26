@@ -6,6 +6,13 @@
   <p>Club: {{ selectedPlayer.club }}</p>
   <p>Position: {{ selectedPlayer.position }}</p>
   <p>Preferred Foot: {{ selectedPlayer.preferredFoot ? 'Yes' : 'No' }}</p>
+
+  @if (selectedPlayer.nicknames && selectedPlayer.nicknames.length > 0) {
+    <h3>Nicknames</h3>
+    @for (nickname of selectedPlayer.nicknames; track $index) {
+      <p>{{ nickname }}</p>
+    }
+  }
 } @else {
   <p>Player not found.</p>
 }

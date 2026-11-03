@@ -1,5 +1,5 @@
 import { Component,inject,input, effect } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SoccerPlayer } from '../services/soccer-player';
 import { SoccerPlayer as Player } from  '../../shared/models/soccer-player'
 import { RouterLink } from '@angular/router';
@@ -25,8 +25,21 @@ export class SoccerPlayerForm {
     age: [18, Validators.required],
     nationality: ['', Validators.required],
     club: ['', Validators.required],
-    position: ['Forward']
+    position: ['Forward'],
+    nicknames:this.fb.nonNullable.array<string>([])
   }, {validators: goalkeeperAgeValidator });
+  get nicknames(): FormArray {
+    return this.playerForm.controls.nicknames;
+  }
+
+  addNickname(): void {
+    this.nicknames.push(this.fb.control(''));
+  }
+
+  removeNickname(index: number): void {
+    this.nicknames.removeAt(index);
+  }
+
 
   constructor() {
     effect(() => {
@@ -37,6 +50,11 @@ export class SoccerPlayerForm {
 
         if (player) {
           this.playerForm.patchValue(player);
+          this.nicknames.clear();
+          player.nicknames?.forEach(nickname => {
+            this.nicknames.push(this.fb.nonNullable.control(nickname));
+
+          });
         }
       }
     });
@@ -58,6 +76,7 @@ export class SoccerPlayerForm {
       nationality: value.nationality!,
       club: value.club!,
       position: value.position as Player['position'],
+      nicknames: value.nicknames
     };
 
     if (id) {

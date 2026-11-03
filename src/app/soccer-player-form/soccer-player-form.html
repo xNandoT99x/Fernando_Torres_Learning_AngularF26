@@ -17,8 +17,6 @@
       playerForm.controls.name.hasError('whitespace')) {
         <p>Name cannot contain only spaces.</p>
       }
-
-
     }
   </div>
 
@@ -67,6 +65,21 @@
     <p>Goalkeepers must be at least 18 years old.</p>
   }
 
+  <div formArrayName="nicknames">
+    <h3>Player Nicknames</h3>
+
+    @for (nickname of nicknames.controls; track nickname; let i = $index) {
+      <div>
+        <input type="text" [formControlName]="i" placeholder="Nickname">
+        <button type="button" (click)="removeNickname(i)">
+          Remove
+        </button>
+      </div>
+    }
+    <button type="button" (click)="addNickname()">
+      Add Nickname
+    </button>
+  </div>
   <button type="submit" [disabled]="playerForm.invalid">
     {{ id() ? 'Update Player' : 'Add Player' }}
   </button>

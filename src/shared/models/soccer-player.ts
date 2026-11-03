@@ -6,6 +6,7 @@ export interface SoccerPlayer {
   club: string;
   position: 'Forward' | 'Midfielder' | 'Defender' | 'Goalkeeper';
   preferredFoot?: boolean;
+  nicknames?: string[];
 }
 
 export type SoccerPlayerList<T> = T[];
