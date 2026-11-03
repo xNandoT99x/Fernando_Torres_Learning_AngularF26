@@ -1,0 +1,11 @@
+@if (player(); as selectedPlayer) {
+  <h2>{{ selectedPlayer.name }}</h2>
+
+  <p>Age: {{ selectedPlayer.age }}</p>
+  <p>Nationality: {{ selectedPlayer.nationality }}</p>
+  <p>Club: {{ selectedPlayer.club }}</p>
+  <p>Position: {{ selectedPlayer.position }}</p>
+  <p>Preferred Foot: {{ selectedPlayer.preferredFoot ? 'Yes' : 'No' }}</p>
+} @else {
+  <p>Player not found.</p>
+}
