@@ -20,6 +20,5 @@ export const appConfig: ApplicationConfig = {
       provide: SoccerPlayer,
       useClass: MockSoccerPlayer,
     },
-
   ],
 };
