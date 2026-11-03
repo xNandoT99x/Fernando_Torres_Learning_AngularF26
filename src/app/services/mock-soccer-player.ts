@@ -57,10 +57,16 @@ export class MockSoccerPlayer {
     this.players.update((list) => [...list, newPlayer]);
   }
 
+  updatePlayer(updatedPlayer: Player): void {
+    this.players.update((list) =>
+      list.map((player) => (player.id === updatedPlayer.id ? updatedPlayer : player)),
+    );
+  }
+
+
   removePlayer(id: number): void {
     this.players.update((list) => list.filter((player) => player.id !== id));
   }
-
 }
 
 

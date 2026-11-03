@@ -1,4 +1,4 @@
-<h2>Add Soccer Player</h2>
+<h2>{{id() ? 'Edit Soccer Player' : 'Add Soccer Player'}}</h2>
 
 <form [formGroup]="playerForm" (ngSubmit)="onSubmit()">
 
@@ -57,7 +57,7 @@
   </div>
 
   <button type="submit" [disabled]="playerForm.invalid">
-    Add Player
+    {{ id() ? 'Update Player' : 'Add Player' }}
   </button>
 
   <p>
