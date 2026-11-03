@@ -1,8 +1,9 @@
 import { Component, input, output } from '@angular/core';
 import {SoccerPlayer, ContentEvent} from '../../shared/models/soccer-player';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-soccer-player-list-item',
   styleUrl: './soccer-player-list-item.css',
   templateUrl: './soccer-player-list-item.html',

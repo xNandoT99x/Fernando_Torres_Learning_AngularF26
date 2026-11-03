@@ -1,9 +1,9 @@
 import { Component, signal } from '@angular/core';
-import { SoccerPlayerListComponent } from './soccer-player-list/soccer-player-list';
+import { RouterOutlet } from '@angular/router';
 
 
 @Component({
-  imports: [SoccerPlayerListComponent],
+  imports: [RouterOutlet],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',

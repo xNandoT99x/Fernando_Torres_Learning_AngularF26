@@ -1,6 +1,11 @@
 <div (click)="toggle()">
 
-<h2>{{player().name}}</h2>
+<h2>
+  <a [routerLink]= "['/soccer-players', player().id]">
+  {{player().name}}
+
+</a>
+</h2>
 @switch (player().position){
   @case ('Forward'){
     <span>Forward</span>
