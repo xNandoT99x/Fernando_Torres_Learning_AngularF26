@@ -47,7 +47,7 @@ export class MockSoccerPlayer {
   ]);
   readonly playersList = this.players.asReadonly();
   readonly barcelonaPlayers = computed(() =>
-    this.players().filter((player) => player.club === 'Barcelona Legends'),
+    this.players().filter((player) => player.club === 'Barcelona'),
   );
   readonly barcelonaForwards = computed(() =>
     this.barcelonaPlayers().filter((player) => player.position === 'Forward'),

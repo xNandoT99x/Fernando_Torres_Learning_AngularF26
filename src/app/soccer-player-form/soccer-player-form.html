@@ -1,0 +1,67 @@
+<h2>Add Soccer Player</h2>
+
+<form [formGroup]="playerForm" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label for="name">Name:</label>
+    <input id="name" type="text" formControlName="name">
+
+    @if (playerForm.controls.name.touched) {
+      @if (playerForm.controls.name.hasError('required')) {
+        <p>Name is required.</p>
+      }
+      @if (playerForm.controls.name.hasError('minlength')) {
+        <p>Name must be at least 2 characters.</p>
+      }
+    }
+  </div>
+
+  <div>
+    <label for="age">Age:</label>
+    <input id="age" type="number" formControlName="age">
+
+    @if (playerForm.controls.age.touched &&
+    playerForm.controls.age.hasError('required')) {
+      <p>Age is required.</p>
+    }
+  </div>
+
+  <div>
+    <label for="nationality">Nationality:</label>
+    <input id="nationality" type="text" formControlName="nationality">
+
+    @if (playerForm.controls.nationality.touched &&
+    playerForm.controls.nationality.hasError('required')) {
+      <p>Nationality is required.</p>
+    }
+  </div>
+
+  <div>
+    <label for="club">Club:</label>
+    <input id="club" type="text" formControlName="club">
+
+    @if (playerForm.controls.club.touched &&
+    playerForm.controls.club.hasError('required')) {
+      <p>Club is required.</p>
+    }
+  </div>
+
+  <div>
+    <label for="position">Position:</label>
+    <select id="position" formControlName="position">
+      <option value="Forward">Forward</option>
+      <option value="Midfielder">Midfielder</option>
+      <option value="Defender">Defender</option>
+      <option value="Goalkeeper">Goalkeeper</option>
+    </select>
+  </div>
+
+  <button type="submit" [disabled]="playerForm.invalid">
+    Add Player
+  </button>
+
+  <p>
+    <a routerLink="/soccer-players">Back to Players</a>
+  </p>
+
+</form>
