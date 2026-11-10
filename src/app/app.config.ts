@@ -12,7 +12,7 @@ export const appConfig: ApplicationConfig = {
     {
       provide: SOCCER_PLAYER_CONFIG,
       useValue: {
-        apiBaseUrl: 'https://soccer-players.example.com/api',
+        apiBaseUrl: 'https://www.thesportsdb.com/api/v1/json/123',
         defaultCategory: 'all',
       },
     },

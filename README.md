@@ -57,3 +57,20 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+## API Information
+
+API Name: TheSportsDB
+
+Documentation:
+https://www.thesportsdb.com/documentation
+
+Example Request:
+https://www.thesportsdb.com/api/v1/json/123/lookup_all_players.php?id=133739
+
+The API provides soccer player information in JSON format.
+The response contains a "player" array with player information.
+
+The API was tested successfully from the Angular application
+without CORS errors.
