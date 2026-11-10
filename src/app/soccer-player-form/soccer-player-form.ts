@@ -70,7 +70,7 @@ export class SoccerPlayerForm {
     const player: Player = {
       id: id
       ? Number(id)
-        : Math.max(0, ...this.playerService.playersList().map(player => player.id)) + 1,
+        : Math.min(0, ...this.playerService.playersList().map(player => player.id)) - 1,
       name: value.name!,
       age: value.age!,
       nationality: value.nationality!,

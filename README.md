@@ -77,3 +77,11 @@ without CORS errors.
 
 We chose Option A: HttpClient and an Observable to load soccer players from TheSportsDB API. We chose this option because our application already uses Angular Signals to manage the players, and HttpClient allows us to update the existing signal when the API responds. This
 approach also makes it easy to handle loading and error states.
+
+## Local Edits
+
+Players are loaded from TheSportsDB API.
+
+Users can edit and delete players locally without sending changes to the API. Changes are stored in Angular Signals and are reflected immediately in the application.
+
+When the page is refreshed, the original players are loaded again from TheSportsDB, so local changes are lost.
