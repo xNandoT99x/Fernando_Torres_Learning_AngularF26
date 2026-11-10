@@ -5,10 +5,13 @@ import { SOCCER_PLAYER_CONFIG} from '../shared/config/app-config';
 import { SoccerPlayer} from './services/soccer-player';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { loadingInterceptor } from './interceptors/loading-interceptor';
+import { errorInterceptor } from './interceptors/error-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(withInterceptors([loadingInterceptor])),
+    // The order does not affect our app because the loading interceptor
+    // uses finalize() and the error interceptor rethrows the error.
+    provideHttpClient(withInterceptors([loadingInterceptor, errorInterceptor])),
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes, withComponentInputBinding()),
     {

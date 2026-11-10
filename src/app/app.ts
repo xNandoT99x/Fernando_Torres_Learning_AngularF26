@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { EditGuard } from './services/edit-guard';
 import { LoadingService } from './services/loading';
-
+import { ErrorService } from './services/error';
 @Component({
   imports: [RouterOutlet],
   selector: 'app-root',
@@ -12,6 +12,7 @@ import { LoadingService } from './services/loading';
 export class App {
   readonly editGuard = inject(EditGuard);
   readonly loadingService = inject(LoadingService);
+  readonly errorService = inject(ErrorService);
 
   protected readonly title = signal('project1');
 }
