@@ -74,3 +74,6 @@ The response contains a "player" array with player information.
 
 The API was tested successfully from the Angular application
 without CORS errors.
+
+We chose Option A: HttpClient and an Observable to load soccer players from TheSportsDB API. We chose this option because our application already uses Angular Signals to manage the players, and HttpClient allows us to update the existing signal when the API responds. This
+approach also makes it easy to handle loading and error states.

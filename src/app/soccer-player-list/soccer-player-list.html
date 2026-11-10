@@ -1,11 +1,19 @@
-<p> Data Source: {{ playerService.apiBaseUrl }} (placeholder)</p>
-@for (player of players(); track player.id){
+<p> Data Source: {{ playerService.apiBaseUrl }}</p>
+
+@if (playerService.error()) {
+  <p>{{ playerService.error() }}</p>
+}
+
+@if (playerService.loading()) {
+  <p>Loading players...</p>
+}
+
+@for (player of players(); track player.id) {
   <app-soccer-player-list-item
     [player]="player"
-  (playerEvent)="onPlayerEvent($event)">
-
+    (playerEvent)="onPlayerEvent($event)">
   </app-soccer-player-list-item>
-}@empty {
+} @empty {
   <p>No soccer players found.</p>
 }
 

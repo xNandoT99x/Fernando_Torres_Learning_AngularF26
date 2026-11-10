@@ -3,7 +3,7 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { routes } from './app.routes';
 import { SOCCER_PLAYER_CONFIG} from '../shared/config/app-config';
 import { SoccerPlayer} from './services/soccer-player';
-import { MockSoccerPlayer} from './services/mock-soccer-player';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,7 +18,7 @@ export const appConfig: ApplicationConfig = {
     },
     {
       provide: SoccerPlayer,
-      useClass: MockSoccerPlayer,
+      useClass: SoccerPlayer,
     },
   ],
 };

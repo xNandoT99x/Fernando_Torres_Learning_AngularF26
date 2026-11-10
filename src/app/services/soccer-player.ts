@@ -2,14 +2,15 @@ import { computed,effect, inject, signal } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { SoccerPlayer as Player } from '../../shared/models/soccer-player';
 import { SOCCER_PLAYER_CONFIG } from '../../shared/config/app-config';
-import { TheSportsDBPlayer } from '../../shared/models/thesportsdb-player';
-
+import { TheSportsDBPlayer, TheSportsDBResponse } from '../../shared/models/thesportsdb-player';
+import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class SoccerPlayer {
   private config = inject(SOCCER_PLAYER_CONFIG);
+  private http = inject(HttpClient);
   readonly apiBaseUrl = this.config.apiBaseUrl;
 
-  private mapPlayer(player: TheSportsDBPlayer): Player  | null {
+  private mapPlayer(player: TheSportsDBPlayer): Player | null {
     let position: Player['position'];
 
     const apiPosition = player.strPosition?.toLowerCase() ?? '';
@@ -40,8 +41,7 @@ export class SoccerPlayer {
 
       if (
         today.getMonth() < birthDate.getMonth() ||
-        (today.getMonth() === birthDate.getMonth() &&
-          today.getDate() < birthDate.getDate())
+        (today.getMonth() === birthDate.getMonth() && today.getDate() < birthDate.getDate())
       ) {
         age--;
       }
@@ -60,97 +60,9 @@ export class SoccerPlayer {
       position: position,
     };
   }
-  private players = signal<Player[]>([
-    {
-      id: 1,
-      name: 'Leo Messi',
-      age: 39,
-      nationality: 'Argentina',
-      club: 'Inter Miami',
-      position: 'Forward',
-      preferredFoot: false,
-    },
-    {
-      id: 2,
-      name: 'Cristiano Ronaldo',
-      age: 41,
-      nationality: 'Portuguese',
-      club: 'Al Nassr',
-      position: 'Forward',
-      preferredFoot: false,
-    },
-    {
-      id: 3,
-      name: 'Lamine Yamal',
-      age: 19,
-      nationality: 'Spain',
-      club: 'Barcelona',
-      position: 'Forward',
-    },
-    {
-      id: 4,
-      name: 'Kylian Mbappé',
-      age: 27,
-      nationality: 'France',
-      club: 'Real Madrid',
-      position: 'Forward',
-      preferredFoot: true,
-    },
-    {
-      id: 5,
-      name: 'Kevin De Bruyne',
-      age: 35,
-      nationality: 'Belgium',
-      club: 'Napoli',
-      position: 'Midfielder',
-      preferredFoot: false,
-    },
-    {
-      id: 6,
-      name: 'Joan Garcia',
-      age: 25,
-      nationality: 'Spain',
-      club: 'Barcelona',
-      position: 'Goalkeeper',
-      preferredFoot: true,
-    },
-    {
-      id: 7,
-      name: 'Pau Cubarsi',
-      age: 19,
-      nationality: 'Spain',
-      club: 'Barcelona',
-      position: 'Defender',
-      preferredFoot: false,
-    },
-    {
-      id: 8,
-      name: 'Raphinha',
-      age: 29,
-      nationality: 'Brazil',
-      club: 'Barcelona',
-      position: 'Forward',
-      preferredFoot: false,
-    },
-    {
-      id: 9,
-      name: 'Anthony Gordon',
-      age: 25,
-      nationality: 'England',
-      club: 'Barcelona',
-      position: 'Forward',
-      preferredFoot: true,
-    },
-    {
-      id: 10,
-      name: 'Karim Adeyemi',
-      age: 24,
-      nationality: 'Germany',
-      club: 'Barcelona',
-      position: 'Forward',
-      preferredFoot: true,
-    },
-  ]);
+  private players = signal<Player[]>([]);
+  readonly error = signal<string | null>(null);
+readonly loading = signal<boolean>(false);
 
   readonly playersList = this.players.asReadonly();
   readonly barcelonaPlayers = computed(() =>
@@ -160,6 +72,27 @@ export class SoccerPlayer {
     this.barcelonaPlayers().filter((player) => player.position === 'Forward'),
   );
 
+  load(): void {
+    this.loading.set(true);
+    this.error.set(null);
+    this.http.get<TheSportsDBResponse>(`${this.apiBaseUrl}/lookup_all_players.php`, {
+        params: { id: '133739' },
+      })
+      .subscribe({
+        next: (response) => {
+          const players = (response.player ?? [])
+            .map((player) => this.mapPlayer(player))
+            .filter((player): player is Player => player !== null);
+          this.players.set(players);
+          this.loading.set(false);
+        },
+        error: () => {
+          this.error.set('Could not load players.')
+          this.loading.set(false);
+
+        },
+      });
+  }
   addPlayer(newPlayer: Player): void {
     this.players.update((list) => [...list, newPlayer]);
   }
@@ -173,6 +106,7 @@ export class SoccerPlayer {
     this.players.update((list) => list.filter((player) => player.id !== id));
   }
   constructor() {
+    this.load();
     effect(() => {
       console.log('Number of players:', this.players().length);
     });
