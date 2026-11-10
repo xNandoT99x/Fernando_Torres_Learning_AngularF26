@@ -2,12 +2,64 @@ import { computed,effect, inject, signal } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { SoccerPlayer as Player } from '../../shared/models/soccer-player';
 import { SOCCER_PLAYER_CONFIG } from '../../shared/config/app-config';
+import { TheSportsDBPlayer } from '../../shared/models/thesportsdb-player';
 
 @Injectable()
 export class SoccerPlayer {
   private config = inject(SOCCER_PLAYER_CONFIG);
   readonly apiBaseUrl = this.config.apiBaseUrl;
 
+  private mapPlayer(player: TheSportsDBPlayer): Player  | null {
+    let position: Player['position'];
+
+    const apiPosition = player.strPosition?.toLowerCase() ?? '';
+
+    if (apiPosition.includes('goalkeeper')) {
+      position = 'Goalkeeper';
+    } else if (apiPosition.includes('back') || apiPosition.includes('defender')) {
+      position = 'Defender';
+    } else if (apiPosition.includes('midfield')) {
+      position = 'Midfielder';
+    } else if (
+      apiPosition.includes('forward') ||
+      apiPosition.includes('winger') ||
+      apiPosition.includes('striker')
+    ) {
+      position = 'Forward';
+    } else {
+      return null;
+    }
+
+    const today = new Date();
+    const birthDate = player.dateBorn ? new Date(player.dateBorn) : null;
+
+    let age = 0;
+
+    if (birthDate && !isNaN(birthDate.getTime())) {
+      age = today.getFullYear() - birthDate.getFullYear();
+
+      if (
+        today.getMonth() < birthDate.getMonth() ||
+        (today.getMonth() === birthDate.getMonth() &&
+          today.getDate() < birthDate.getDate())
+      ) {
+        age--;
+      }
+    }
+
+    if (!birthDate || isNaN(birthDate.getTime())) {
+      return null;
+    }
+
+    return {
+      id: Number(player.idPlayer),
+      name: player.strPlayer ?? 'Unknown',
+      age: age,
+      nationality: player.strNationality ?? 'Unknown',
+      club: player.strTeam ?? 'Unknown',
+      position: position,
+    };
+  }
   private players = signal<Player[]>([
     {
       id: 1,
