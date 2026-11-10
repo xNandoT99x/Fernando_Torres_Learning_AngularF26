@@ -1,6 +1,9 @@
 <button (click)="editGuard.toggleGuard()">
   Edit Guard: {{ editGuard.guardEnabled() ? 'ON' : 'OFF' }}
 </button>
+@if (loadingService.isLoading()) {
+  <span>Loading...</span>
+}
 <router-outlet/>
 
 
