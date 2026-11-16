@@ -84,4 +84,36 @@ Players are loaded from TheSportsDB API.
 
 Users can edit and delete players locally without sending changes to the API. Changes are stored in Angular Signals and are reflected immediately in the application.
 
-When the page is refreshed, the original players are loaded again from TheSportsDB, so local changes are lost.
+When the page is refreshed, the original players are loaded again from TheSportsDB, so local changes are lost
+
+## Lazy Loading 
+
+Before 
+
+| Initial chunk files | Names         |  Raw size | Estimated transfer size
+|---|---|---|---|
+| main-A6N7YMSF.js    | main          | 328.66 kB |                86.42 kB
+| styles-5INURTSO.css | styles        |   0 bytes |                 0 bytes
+| ** Initial total ** | | **328.66 kB** |                86.42 kB|
+
+
+After 
+
+| Initial chunk files | Names                |  Raw size | Estimated transfer size
+|---|---|---|---|
+| chunk-ERFHWSRS.js   | -                    | 166.87 kB |                49.21 kB
+| chunk-HECNOFII.js   | -                    | 104.92 kB |                27.24 kB
+| main-H3GEFQBX.js    | main                 |   6.63 kB |                 2.25 kB
+| styles-5INURTSO.css | styles               |   0 bytes |                 0 bytes
+| **Initial total**       | | 278.40 kB |                78.70 kB|
+
+
+| Lazy chunk files    | Names                |  Raw size | Estimated transfer size
+|---|---|---|---|
+| chunk-XTW2ZLUE.js   | soccer-player-form   |  51.90 kB |                11.34 kB
+| chunk-FAEMD3WD.js   | soccer-player-detail |   1.24 kB |               607 bytes
+
+Lazy loading reduced the initial bundle size from 328.66 kB to 278.40 kB by loading the form and detail components only when their routes are visited. The soccer players list remains eager because it is the landing page and should be available immediately.
+
+
+
