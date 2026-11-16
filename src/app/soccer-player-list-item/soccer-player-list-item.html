@@ -2,27 +2,13 @@
 
 <h2>
   <a [routerLink]= "['/soccer-players', player().id]">
-  {{player().name}}
+  {{player().name | titlecase }}
 
 </a>
 </h2>
-@switch (player().position){
-  @case ('Forward'){
-    <span>Forward</span>
-  }
-  @case ('Midfielder'){
-    <span>Midfielder</span>
-  }
-  @case ('Defender'){
-    <span>Defender</span>
-  }
-  @case ('Goalkeeper'){
-    <span>Goalkeeper</span>
-  }
-  @default {
-    <span>Unknown position</span>
-  }
-}
+  <p> Position: {{player().position | uppercase }}</p>
+
+  <p> Player ID: {{ player().id | number:'1.0-0' }}</p>
 @if (player().preferredFoot !== undefined){
   <p>Preferred Foot: {{ player().preferredFoot ? 'Yes' : 'No' }}</p>
 } @else {

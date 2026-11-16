@@ -1,9 +1,10 @@
 import { Component, input, output } from '@angular/core';
 import {SoccerPlayer, ContentEvent} from '../../shared/models/soccer-player';
 import { RouterLink } from '@angular/router';
+import { TitleCasePipe, UpperCasePipe, DecimalPipe } from '@angular/common';
 
 @Component({
-  imports: [RouterLink],
+  imports: [RouterLink,TitleCasePipe, UpperCasePipe, DecimalPipe],
   selector: 'app-soccer-player-list-item',
   styleUrl: './soccer-player-list-item.css',
   templateUrl: './soccer-player-list-item.html',
