@@ -2,11 +2,11 @@
 
 <h2>
   <a [routerLink]= "['/soccer-players', player().id]">
-  {{player().name | titlecase }}
+  {{player().name | shortName: true | titlecase }}
 
 </a>
 </h2>
-  <p> Position: {{player().position | uppercase }}</p>
+  <p> Position: {{player().position | positionLabel | uppercase }}</p>
 
   <p> Player ID: {{ player().id | number:'1.0-0' }}</p>
 @if (player().preferredFoot !== undefined){
