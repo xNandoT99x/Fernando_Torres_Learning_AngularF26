@@ -116,4 +116,13 @@ After
 Lazy loading reduced the initial bundle size from 328.66 kB to 278.40 kB by loading the form and detail components only when their routes are visited. The soccer players list remains eager because it is the landing page and should be available immediately.
 
 
+## Lifecycle
+
+1. What happened when you read this.id() in the constructor, and why?
+
+When I tried to read this.id() in the constructor, Angular displayed error NG8118 because the required input did not have a value yet. This happens because Angular initializes the component inputs after the constructor runs.
+
+2. What action in your app caused ngOnDestroy to run, and what does that tell you about what the router does with a page when you leave it?
+
+ngOnDestroy() ran when I navigated away from the soccer player details page to the players list. This shows that Angular Router destroys the current routed component when navigating away from its page.
 
