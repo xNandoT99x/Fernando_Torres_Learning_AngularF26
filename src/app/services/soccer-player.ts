@@ -12,7 +12,6 @@ export class SoccerPlayer {
 
   private mapPlayer(player: TheSportsDBPlayer): Player | null {
     let position: Player['position'];
-
     const apiPosition = player.strPosition?.toLowerCase() ?? '';
 
     if (apiPosition.includes('goalkeeper')) {
