@@ -55,6 +55,8 @@ export class SoccerPlayerForm {
         }
       }
     });
+    // afterNextRender is used instead of ngOnInit because the input must be rendered in the DOM
+    // before it can receive focus.
     afterNextRender(() => {
       this.nameInput()?.nativeElement.focus();
     });
