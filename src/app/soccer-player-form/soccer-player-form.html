@@ -4,7 +4,7 @@
 
   <div>
     <label for="name">Name:</label>
-    <input id="name" type="text" formControlName="name">
+    <input #nameInput id="name" type="text" formControlName="name">
 
     @if (playerForm.controls.name.touched) {
       @if (playerForm.controls.name.hasError('required')) {

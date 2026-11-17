@@ -1,4 +1,4 @@
-import { Component,inject,input, effect } from '@angular/core';
+import { Component,inject,input, effect, afterNextRender, ElementRef, viewChild  } from '@angular/core';
 import { FormArray, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SoccerPlayer } from '../services/soccer-player';
 import { SoccerPlayer as Player } from  '../../shared/models/soccer-player'
@@ -19,6 +19,8 @@ export class SoccerPlayerForm {
   private fb = inject(FormBuilder);
   private playerService = inject(SoccerPlayer);
   private router = inject(Router);
+  nameInput = viewChild<ElementRef<HTMLInputElement>>('nameInput');
+
 
   playerForm = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(2), noWhitespaceValidator]],
@@ -31,20 +33,15 @@ export class SoccerPlayerForm {
   get nicknames(): FormArray {
     return this.playerForm.controls.nicknames;
   }
-
   addNickname(): void {
     this.nicknames.push(this.fb.control(''));
   }
-
   removeNickname(index: number): void {
     this.nicknames.removeAt(index);
   }
-
-
   constructor() {
     effect(() => {
       const id = this.id();
-
       if (id) {
         const player = this.playerService.playersList().find((player) => player.id === Number(id));
 
@@ -58,15 +55,15 @@ export class SoccerPlayerForm {
         }
       }
     });
+    afterNextRender(() => {
+      this.nameInput()?.nativeElement.focus();
+    });
   }
   onSubmit(): void {
     if (this.playerForm.invalid) return;
 
     const value = this.playerForm.getRawValue();
     const id = this.id();
-
-
-
     const player: Player = {
       id: id
       ? Number(id)
@@ -78,15 +75,12 @@ export class SoccerPlayerForm {
       position: value.position as Player['position'],
       nicknames: value.nicknames
     };
-
     if (id) {
       this.playerService.updatePlayer(player);
       this.router.navigate(['/soccer-players', id]);
     } else {
       this.playerService.addPlayer(player);
     }
-
-
     this.playerForm.reset({
       name: '',
       age: 18,

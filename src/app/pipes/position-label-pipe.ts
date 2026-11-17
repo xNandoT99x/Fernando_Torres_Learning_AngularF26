@@ -12,7 +12,6 @@ export class PositionLabelPipe implements PipeTransform {
   };
   transform(position: string | null | undefined): string {
     if (!position) return 'Unknown';
-
     return this.labels[position] ?? position;
   }
 }
