@@ -6,8 +6,6 @@ import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { noWhitespaceValidator } from '../validators/no-whitespace.validator';
 import { goalkeeperAgeValidator } from '../validators/goalkeeper-age.validator';
-
-
 @Component({
   imports: [ReactiveFormsModule, RouterLink],
   selector: 'app-soccer-player-form',

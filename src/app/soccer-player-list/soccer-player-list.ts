@@ -3,8 +3,10 @@ import { inject } from '@angular/core';
 import { SoccerPlayer } from '../services/soccer-player';
 import{ ContentEvent} from '../../shared/models/soccer-player';
 import { SoccerPlayerListItem } from '../soccer-player-list-item/soccer-player-list-item';
+import {SlicePipe } from '@angular/common';
+
 @Component({
-  imports: [SoccerPlayerListItem],
+  imports: [SoccerPlayerListItem, SlicePipe],
   selector: 'app-soccer-player-list',
   styleUrl: './soccer-player-list.css',
   templateUrl: './soccer-player-list.html',

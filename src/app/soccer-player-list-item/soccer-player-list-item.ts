@@ -1,12 +1,12 @@
 import { Component, input, output } from '@angular/core';
 import {SoccerPlayer, ContentEvent} from '../../shared/models/soccer-player';
 import { RouterLink } from '@angular/router';
-import { TitleCasePipe, UpperCasePipe, DecimalPipe } from '@angular/common';
+import { UpperCasePipe, DecimalPipe } from '@angular/common';
 import { PositionLabelPipe } from '../pipes/position-label-pipe';
 import { ShortNamePipe } from '../pipes/short-name-pipe';
 
 @Component({
-  imports: [RouterLink,TitleCasePipe, UpperCasePipe, DecimalPipe, PositionLabelPipe, ShortNamePipe],
+  imports: [RouterLink, UpperCasePipe, DecimalPipe, PositionLabelPipe, ShortNamePipe],
   selector: 'app-soccer-player-list-item',
   styleUrl: './soccer-player-list-item.css',
   templateUrl: './soccer-player-list-item.html',
