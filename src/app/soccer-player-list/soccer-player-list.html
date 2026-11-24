@@ -22,7 +22,7 @@
 
 @for (player of filteredPlayers(); track player.id) {
   <app-soccer-player-list-item
-    appHighlight
+    highlightColor="#C5C9ED"
     [player]="player"
     (playerEvent)="onPlayerEvent($event)">
   </app-soccer-player-list-item>
@@ -33,7 +33,7 @@
 <h3>Barcelona Players</h3>
 
 @for (player of (barcelonaPlayers() | slice :0:5); track player.id){
-  <p appHighlight="#FDE7CB">{{player.name}}</p>
+  <p appHighlight="#EBC4D2">{{player.name}}</p>
 }
 
 <h4>Barcelona Forwards</h4>
