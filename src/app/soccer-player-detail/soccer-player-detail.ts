@@ -1,5 +1,7 @@
 import { Component, computed, inject, input, OnInit, OnDestroy } from '@angular/core';
 import { SoccerPlayer } from '../services/soccer-player';
+import { Saved } from '../services/saved';
+
 
 @Component({
   imports: [],
@@ -10,6 +12,7 @@ import { SoccerPlayer } from '../services/soccer-player';
 export class SoccerPlayerDetail implements OnInit, OnDestroy {
   id = input.required<string>();
   private playerService = inject(SoccerPlayer);
+  readonly savedService = inject(Saved);
   private openedAt = 0;
   private playerName = '';
   player = computed(() =>

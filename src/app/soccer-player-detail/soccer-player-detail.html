@@ -6,6 +6,9 @@
   <p>Club: {{ selectedPlayer.club }}</p>
   <p>Position: {{ selectedPlayer.position }}</p>
   <p>Preferred Foot: {{ selectedPlayer.preferredFoot ? 'Yes' : 'No' }}</p>
+  <button type="button" (click)="savedService.toggle(selectedPlayer.id)">
+    {{ savedService.isSaved(selectedPlayer.id) ? 'Unsave' : 'Save' }}
+  </button>
 
   @if (selectedPlayer.nicknames && selectedPlayer.nicknames.length > 0) {
     <h3>Nicknames</h3>

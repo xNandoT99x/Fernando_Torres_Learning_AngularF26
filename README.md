@@ -122,7 +122,14 @@ Lazy loading reduced the initial bundle size from 328.66 kB to 278.40 kB by load
 
 When I tried to read this.id() in the constructor, Angular displayed error NG8118 because the required input did not have a value yet. This happens because Angular initializes the component inputs after the constructor runs.
 
-2. What action in your app caused ngOnDestroy to run, and what does that tell you about what the router does with a page when you leave it?
+2. Which action in your app caused ngOnDestroy to run, and what does that tell you about what the router does with a page when you leave it?
 
 ngOnDestroy() ran when I navigated away from the soccer player details page to the players list. This shows that Angular Router destroys the current routed component when navigating away from its page.
 
+## localStorage
+
+The application stores saved soccer player IDs and the selected position filter in localStorage so users do not have to select them again after refreshing the page.
+
+Filtering players by position also reduces the amount of content displayed, making the page shorter and easier to navigate.
+
+Sensitive information such as passwords should never be stored in localStorage.

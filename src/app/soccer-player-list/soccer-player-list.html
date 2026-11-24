@@ -9,7 +9,18 @@
   <p>Loading players...</p>
 }
 
-@for (player of players(); track player.id) {
+<label for="position">Filter by position:</label>
+<select id="position" #position
+        [value]="savedService.selectedPosition()"
+        (change)="savedService.setPosition(position.value)">
+  <option value="All">All positions</option>
+  <option value="Forward">Forward</option>
+  <option value="Midfielder">Midfielder</option>
+  <option value="Defender">Defender</option>
+  <option value="Goalkeeper">Goalkeeper</option>
+</select>
+
+@for (player of filteredPlayers(); track player.id) {
   <app-soccer-player-list-item
     appHighlight
     [player]="player"
@@ -30,3 +41,15 @@
 @for (player of barcelonaForwards(); track player.id){
   <p>{{player.name}}</p>
 }
+<h3>Saved Players</h3>
+
+@for (player of savedPlayers(); track player.id) {
+  <p>
+    <a [routerLink]="['/soccer-players', player.id]">
+      {{ player.name }}
+    </a>
+  </p>
+} @empty {
+  <p>No saved players yet.</p>
+}
+
