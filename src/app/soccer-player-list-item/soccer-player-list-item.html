@@ -19,7 +19,9 @@
     (click)="$event.stopPropagation()">
       Edit Player
     </a>
-    <button type="button" (click)="$event.stopPropagation();toggle()">
+    <button type="button"
+            appConfirm="Are you sure you want to delete this player?"
+      (confirmed)="toggle()">
       Delete Player
     </button>
   </p>

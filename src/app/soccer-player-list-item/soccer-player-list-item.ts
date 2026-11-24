@@ -4,9 +4,12 @@ import { RouterLink } from '@angular/router';
 import { UpperCasePipe, DecimalPipe } from '@angular/common';
 import { PositionLabelPipe } from '../pipes/position-label-pipe';
 import { ShortNamePipe } from '../pipes/short-name-pipe';
+import { Confirm } from '../directives/confirm';
+
+
 
 @Component({
-  imports: [RouterLink, UpperCasePipe, DecimalPipe, PositionLabelPipe, ShortNamePipe],
+  imports: [RouterLink, UpperCasePipe, DecimalPipe, PositionLabelPipe, ShortNamePipe, Confirm],
   selector: 'app-soccer-player-list-item',
   styleUrl: './soccer-player-list-item.css',
   templateUrl: './soccer-player-list-item.html',
