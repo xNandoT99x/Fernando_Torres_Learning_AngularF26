@@ -4,9 +4,10 @@ import { SoccerPlayer } from '../services/soccer-player';
 import{ ContentEvent} from '../../shared/models/soccer-player';
 import { SoccerPlayerListItem } from '../soccer-player-list-item/soccer-player-list-item';
 import {SlicePipe } from '@angular/common';
+import {Highlight } from '../directives/highlight';
 
 @Component({
-  imports: [SoccerPlayerListItem, SlicePipe],
+  imports: [SoccerPlayerListItem, SlicePipe, Highlight],
   selector: 'app-soccer-player-list',
   styleUrl: './soccer-player-list.css',
   templateUrl: './soccer-player-list.html',

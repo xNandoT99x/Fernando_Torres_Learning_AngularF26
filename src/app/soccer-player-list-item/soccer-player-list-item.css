@@ -1,3 +1,6 @@
 :host {
   border: 2px solid;
 }
+:host {
+  display: block;
+}
